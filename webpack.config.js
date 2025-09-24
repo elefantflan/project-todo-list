@@ -30,16 +30,6 @@ module.exports={
                 use: ["style-loader", "css-loader", "sass-loader"],
             },
             {
-                test:/\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"],
-                    }
-                }
-            },
-            {
                 test:/\.(png|svg|jpg|jpeg|gif)$/i,
                 type:'asset/resource'
             }
@@ -47,7 +37,7 @@ module.exports={
     },
     plugins:[
         new HtmlWebpackPlugin({
-            title: "Document",
+            title: "Todo List",
             filename: "index.html",
             template: "src/template.html"
         })

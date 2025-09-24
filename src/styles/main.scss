@@ -1,7 +1,64 @@
 body{
     background-color: rgb(228, 228, 228);
+    margin:0;
+    padding:0;
 }
 
-img{
-    width:100vw;
+.page{
+    display:flex;
+    flex:auto;
+    flex-direction:column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.header{
+    background-color:rgb(205, 91, 91);
+}
+
+.main{
+    display:flex;
+    flex:auto;
+    height:50vh;
+}
+
+.side{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:20vw;
+    background-color:rgb(220, 220, 220);
+}
+
+.nav{
+    display:flex;
+    flex-direction: column;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex:auto;
+    width:80vw;
+}
+
+.list{
+    display:flex;
+    flex:auto;
+    flex-wrap: wrap;
+}
+
+.task{
+    display:flex;
+    flex:auto;
+}
+
+.button{
+    width:30px;
+}
+
+.footer{
+    text-align: center;
+    background-color: rgb(205, 91, 91);
 }
