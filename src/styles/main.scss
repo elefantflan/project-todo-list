@@ -1,64 +1,103 @@
+:root{
+  --coffee: #704E2E;
+  --oak: #79745C;
+  --tea: #E6F8B2;
+  --jasmine: #CDE77F;
+  --herb: #709176;
+
+  color:var(--herb)
+}
+
+*::before, *::after{
+  box-sizing: border-box;
+}
+
 body{
-    background-color: rgb(228, 228, 228);
-    margin:0;
-    padding:0;
+  margin:0;
 }
 
 .page{
-    display:flex;
-    flex:auto;
-    flex-direction:column;
-    justify-content: space-between;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.header{
-    background-color:rgb(205, 91, 91);
-}
-
-.main{
-    display:flex;
-    flex:auto;
-    height:50vh;
+.header, .footer {
+  text-align: center;
+  background-color: var(--jasmine);
 }
 
 .side{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width:20vw;
-    background-color:rgb(220, 220, 220);
-}
-
-.nav{
-    display:flex;
-    flex-direction: column;
+  padding-left:5px;
+  padding-right:30px;
+  background-color: var(--herb);
 }
 
 .content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex:auto;
-    width:80vw;
+  display: flex;
+  flex:auto;
+  background-color: var(--herb);
 }
 
-.list{
-    display:flex;
-    flex:auto;
-    flex-wrap: wrap;
+.main{
+  color: var(--jasmine);
+  display: flex;
+  flex:auto;
+  flex-wrap: auto;
 }
 
-.task{
-    display:flex;
-    flex:auto;
+.create {
+  background: none;
+  border: none;
 }
 
-.button{
-    width:30px;
+.button-today,
+.button-schedule,
+.button-project,
+.button-tag,
+.button-finished{
+  background:none;
+  border:none;
+  cursor:pointer;
 }
 
-.footer{
-    text-align: center;
-    background-color: rgb(205, 91, 91);
+.todo-list{
+  border:1px solid var(--jasmine);
+  padding:20px;
+}
+
+#add{
+  background:none;
+  border:none;
+  color: var(--jasmine);
+  cursor:pointer;
+}
+
+form{
+  display:flex;
+  width:100%;
+  white-space: pre-line;
+}
+
+input{
+  width:100px;
+  height:15px;
+  margin:0;
+  padding:0;
+}
+
+.priority{
+  width:50px;
+  display: flex;
+}
+
+fieldset{
+  padding:0;
+}
+
+.delete-button{
+  background:none;
+  border:none;
+  color:var(--jasmine);
+  cursor:pointer;
 }
