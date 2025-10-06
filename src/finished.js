@@ -1,7 +1,8 @@
-const header=document.createElement('h2')
+const header=document.createElement('h1')
 header.textContent="Finished Tasks"
 const container = document.createElement('div')
 container.className="todo-list"
+container.style.display="none"
 const btnAdd = document.createElement('button')
 btnAdd.textContent="+"
 btnAdd.id="add"

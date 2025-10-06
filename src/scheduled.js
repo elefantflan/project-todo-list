@@ -1,6 +1,7 @@
-const header=document.createElement('h2')
+const header=document.createElement('h1')
 header.textContent="Scheduled"
 const container = document.createElement('div')
+container.style.display="none"
 container.className="todo-list"
 const btnAdd = document.createElement('button')
 btnAdd.textContent="+"
@@ -20,19 +21,38 @@ function getForm(){
     const form = document.createElement('form')
     form.className="task"
 
+    const removeTask = document.createElement('button')
+    removeTask.className="remove"
+    removeTask.textContent="X"
+    form.append(removeTask)
+    removeTask.addEventListener('click',function(){
+    this.closest('.task').remove()
+    const tasks = container.querySelectorAll('.task');
+    if (tasks.length === 0) {
+        container.style.display = 'none'; // hide when no tasks left
+    } else {
+        container.style.display = 'block'; // show if there are tasks
+     }
+    })
+    const divTitle = document.createElement('div')
+    const divDate = document.createElement('div')
+    const divPriority = document.createElement('div')
+    const divTag = document.createElement('div')
+
     const labelTitle = document.createElement('label')
     labelTitle.setAttribute('for','title')
-    labelTitle.textContent="Title: "
+    labelTitle.textContent="Title:"
     const title = document.createElement('input')
     title.setAttribute('type','text')
     title.setAttribute('id','title')
-    
+
     const labelDate = document.createElement('label')
     labelDate.for="date"
-    labelDate.textContent="Due: "
+    labelDate.textContent="Due:"
     const date = document.createElement('input')
     date.setAttribute('type','date')
     date.setAttribute('id', 'date')
+    
 
     const labelTime = document.createElement('label')
     labelTime.for="time"
@@ -43,7 +63,6 @@ function getForm(){
     const labelPriority = document.createElement('label')
     labelPriority.textContent="Priority: "
     labelPriority.setAttribute('for', 'priority')
-    const fieldset = document.createElement('fieldset')
     const priority = document.createElement('div')
     priority.className="priority"
     const urgent = document.createElement('input')
@@ -58,8 +77,10 @@ function getForm(){
     normal.type = "radio"
     normal.value = "normal."
     normal.name = "priority"
+    const radios = document.querySelectorAll('input[type="radio"][name="priority"]');
+
     const labelTag = document.createElement('label')
-    labelTag.textContent="Tag: "
+    labelTag.textContent="Tag:"
     labelTag.setAttribute('for','tag')
     
     const tag = document.createElement('input')
@@ -67,16 +88,20 @@ function getForm(){
     tag.setAttribute('id', 'tag')
 
 
-    form.append(labelTitle,title,labelDate, date, labelTime,time,labelPriority,fieldset,priority,labelTag,tag)
-    fieldset.append(priority)
+    divTitle.append(labelTitle,title)
+    divDate.append(labelDate, date,labelTime, time)
+    divPriority.append(labelPriority, priority)
+    divTag.append(labelTag,tag)
     priority.append(urgent,important,normal)
+    form.append(divTitle,divDate,divPriority,divTag)
     const submit = document.createElement('button')
+    submit.id="submit"
     submit.setAttribute('type', 'submit')
     submit.addEventListener('click',()=>{
         //radio value
         const selectedPriority = form.querySelector('input[type="radio"]:checked')?.value||"none"
         // submit form
-        const info = `${title.value} due at ${date.value}, ${time.value}: ${selectedPriority} tag: ${tag.value}`
+        const info = `${title.value} due at ${time.value}: ${selectedPriority} tag: ${tag.value}`
         form.textContent = info;
         
         // checkbox
@@ -87,10 +112,6 @@ function getForm(){
 
         // input to Task object
         const taskObject = new Task(title.value, time.value, priority.value)
-
-        // create an array of things to do
-        todoList.push(taskObject);
-        console.log(todoList);
     })
     submit.textContent="Enter"
     form.append(submit)
@@ -99,7 +120,8 @@ function getForm(){
 }
 
 btnAdd.addEventListener('click',function(){
-    container.append(getForm());
+    container.append(getForm())
+    container.style.display="block";
 })
 
 

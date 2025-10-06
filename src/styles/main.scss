@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "organical";
+  src:url('../assets/font/ORGANICAL PERSONAL USE.ttf') format('truetype');
+}
+
+
 :root{
   --coffee: #704E2E;
   --oak: #79745C;
@@ -5,7 +11,7 @@
   --jasmine: #CDE77F;
   --herb: #709176;
 
-  color:var(--herb)
+  color:var(--herb);
 }
 
 *::before, *::after{
@@ -24,6 +30,18 @@ body{
   height: 100vh;
 }
 
+.title{
+  font-family: "organical";
+  color:var(--herb);
+  font-size: 2rem;
+  margin:0;
+  padding:0;
+}
+
+h1{
+  margin:0 0 10px;
+}
+
 .header, .footer {
   text-align: center;
   background-color: var(--jasmine);
@@ -32,16 +50,23 @@ body{
 .side{
   width:15%;
   padding-right:5%;
+  padding-left: 10px;
   background-color: var(--herb);
 }
 
 .content{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto;
   box-sizing: border-box;
   width:80%;
-  padding-right:3%;
-  display:flex;
-  flex:auto;
+  padding-right:4%;
   background-color: var(--herb);
+  padding:10px 0;
+}
+
+.content>div{
+  width:95%;
 }
 
 .main{
@@ -73,9 +98,11 @@ body{
   flex:auto;
   flex-wrap: wrap;
   box-sizing: border-box;
+  width: fit-content;
   border:1px solid var(--jasmine);
   padding:20px;
   border-radius: 20px;
+  margin-bottom: 10px;
 }
 
 #add{
@@ -125,17 +152,18 @@ fieldset{
 
 .add-list{
   background:none;
-  border:1px solid var(--coffee);
   color:var(--jasmine);
+  border:none;
   cursor:pointer
 }
 
-.task{
+.folder, .task{
+  width: fit-content;
   color:black;
   gap:5px;
   background-color: rgba(255, 255, 255, 0.6);
   padding: 10px 5px;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   border-radius: 10px;
 }
 
@@ -152,4 +180,17 @@ fieldset{
   color: var(--jasmine);
   border:none;
   border-radius: 4px;
+}
+
+.folder{
+  width:100px;
+  height:75px;
+  cursor: pointer;
+}
+
+textarea{
+  width:80%;
+  height:100%;
+  border:none;
+  border-radius:10px
 }

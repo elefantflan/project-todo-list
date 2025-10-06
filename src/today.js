@@ -1,4 +1,4 @@
-const header=document.createElement('h2')
+const header=document.createElement('h1')
 header.textContent="Today"
 const container = document.createElement('div')
 container.className="todo-list"
