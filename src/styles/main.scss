@@ -18,7 +18,9 @@ body{
 
 .page{
   display: flex;
+  flex:auto;
   flex-direction: column;
+  max-width: 100vw;
   height: 100vh;
 }
 
@@ -28,18 +30,23 @@ body{
 }
 
 .side{
-  padding-left:5px;
-  padding-right:30px;
+  width:15%;
+  padding-right:5%;
   background-color: var(--herb);
 }
 
 .content{
-  display: flex;
+  box-sizing: border-box;
+  width:80%;
+  padding-right:3%;
+  display:flex;
   flex:auto;
   background-color: var(--herb);
 }
 
 .main{
+  box-sizing: border-box;
+  width:100vw;
   color: var(--jasmine);
   display: flex;
   flex:auto;
@@ -62,8 +69,13 @@ body{
 }
 
 .todo-list{
+  display: flex;
+  flex:auto;
+  flex-wrap: wrap;
+  box-sizing: border-box;
   border:1px solid var(--jasmine);
   padding:20px;
+  border-radius: 20px;
 }
 
 #add{
@@ -74,16 +86,24 @@ body{
 }
 
 form{
-  display:flex;
+  display: flex;
+  flex-wrap: wrap;
   width:100%;
   white-space: pre-line;
 }
 
+form>div{
+  display:flex;
+  gap:10px;
+}
+
 input{
-  width:100px;
+  width:110px;
   height:15px;
   margin:0;
   padding:0;
+  border:none;
+  border-radius: 2px;
 }
 
 .priority{
@@ -93,6 +113,7 @@ input{
 
 fieldset{
   padding:0;
+  border-radius: 10px;
 }
 
 .delete-button{
@@ -100,4 +121,35 @@ fieldset{
   border:none;
   color:var(--jasmine);
   cursor:pointer;
+}
+
+.add-list{
+  background:none;
+  border:1px solid var(--coffee);
+  color:var(--jasmine);
+  cursor:pointer
+}
+
+.task{
+  color:black;
+  gap:5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 10px 5px;
+  margin-bottom: 2px;
+  border-radius: 10px;
+}
+
+.remove{
+  border:none;
+  background-color: none;
+  background:none;
+  color:var(--coffee);
+}
+
+#submit{
+  max-width: 50px;
+  background-color: var(--oak);
+  color: var(--jasmine);
+  border:none;
+  border-radius: 4px;
 }
