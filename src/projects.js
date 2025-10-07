@@ -1,13 +1,13 @@
-const container = document.createElement('div')
-container.style.display="none"
-container.className="todo-list"
+const todoContainer = document.createElement('div')
+todoContainer.style.display="none"
+todoContainer.className="todo-list"
 const btnAdd = document.createElement('button')
 btnAdd.textContent="+"
 btnAdd.id="add"
 
 function getPageProjects(){
     const page = document.createElement('div')
-    page.append(container)
+    page.append(todoContainer)
     page.append(btnAdd)
 
     return page;
@@ -16,44 +16,40 @@ function getPageProjects(){
 function projectFolder(){
     const form = document.createElement('form')
     const submit = document.createElement('button')
-    submit.textContent="Enter"
-    submit.type = "submit"
     const label = document.createElement('label')
-    label.for="title"
-    label.textContent="Title:"
-    const input = document.createElement('input')
+    const input = document.createElement('input')   
+
+    submit.type = "submit"
     input.type="text"
+
+    label.for="title"
     input.id="title"
+
+    submit.textContent="Enter"
+    label.textContent="Title:"
+
     form.append(label, input, submit)
+
     submit.addEventListener('click', function(){
         const folder = document.createElement('div')
-        const drop = document.createElement('div')
+        const drop = document.createElement('form')
         const detail = document.createElement('textarea')
-        drop.className = "drop"
-        drop.style.display="none"
-        drop.append(detail)
-        folder.className = "folder"
-        container.append(folder)
-        folder.append(form)
-        folder.append(drop)
-        form.textContent=`${input.value}`
+        const submit = document.createElement('button')
 
-        const folders = document.querySelectorAll('.folder')
-        folders.forEach(folder=>{
-            folder.addEventListener('click',function(){
-                const drop = this.querySelector('.drop')
-                drop.style.display = "block"
-            })
-        })
+        folder.className = "folder"
+
+        form.textContent=`${input.value}`
+        submit.textContent="Enter"
+
+        todoContainer.append(folder)
+        folder.append(form)
     })
     return form
 }
 
-
-
 btnAdd.addEventListener('click',function(){
-    container.append(projectFolder());
-    container.style.display="block";
+    todoContainer.append(projectFolder());
+    todoContainer.style.display="block";
 })
 
 export{getPageProjects}

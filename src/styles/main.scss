@@ -47,35 +47,14 @@ h1{
   background-color: var(--jasmine);
 }
 
-.side{
-  width:15%;
-  padding-right:5%;
-  padding-left: 10px;
-  background-color: var(--herb);
-}
-
-.content{
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-rows: auto;
-  box-sizing: border-box;
-  width:80%;
-  padding-right:4%;
-  background-color: var(--herb);
-  padding:10px 0;
-}
-
-.content>div{
-  width:95%;
-}
-
 .main{
-  box-sizing: border-box;
-  width:100vw;
-  color: var(--jasmine);
   display: flex;
   flex:auto;
   flex-wrap: auto;
+  box-sizing: border-box;
+  width:100vw;
+  color: var(--jasmine);
+  background-color: var(--herb);
 }
 
 .create {
