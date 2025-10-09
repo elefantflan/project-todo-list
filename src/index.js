@@ -9,11 +9,11 @@ import { getPageFinished } from "./finished"
 const content = document.querySelector('.content')
 const btnToday = document.querySelector('.button-today')
 const btnScheduled = document.querySelector('.button-schedule')
-export const btnProject = document.querySelector('.button-project')
+const btnProject = document.querySelector('.button-project')
 const btnTags = document.querySelector('.button-tag')
 const btnFinished = document.querySelector('.button-finished')
 const todoList = document.querySelector('.todo-list')
-const dropMenu = document.querySelector('.dropdown-menu')
+export const dropMenu = document.querySelector('.dropdown-menu')
 
 // default homepage: Projects
 content.append(getPageProjects());
@@ -46,5 +46,3 @@ btnFinished.addEventListener('click', ()=>{
   content.textContent=''
   content.append(getPageFinished())
 })
-
-export {dropMenu}

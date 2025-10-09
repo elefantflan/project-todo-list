@@ -1,11 +1,11 @@
 import { dropMenu } from "./index.js"
-import { getForm } from "./today.js"
-import { btnProject } from "./index.js"
+
+const content = document.querySelector('.content')
 const page = document.createElement('div')
 page.className="tab"
-const container = document.createElement('div')
-container.className="todo-list"
-container.style.display="none"
+const border = document.createElement('div')
+border.className="border"
+border.style.display="none"
 const addButton = document.createElement('button')
 addButton.textContent="+"
 addButton.id="add"
@@ -15,10 +15,15 @@ function Project(title){
 }
 
 function getPageProjects(){
-    page.append(container)
+    page.append(border)
     page.append(addButton)
     return page;
 }
+
+addButton.addEventListener('click', function(){
+    border.append(createForm())
+    border.style.display="block"
+})
 
 function createForm(){
     const form = document.createElement('form')
@@ -32,17 +37,17 @@ function createForm(){
     input.type="text"
 
     submit.addEventListener('click', function(e){
-        e.preventDefault
+        e.preventDefault()
         const value = input.value.trim()
         if(value===''){
         alert("Please enter a valid name")
         }
         else{
         createProject(input.value)
+        form.remove()
         }
     })
 
-    form.remove()
     return form
 }
 
@@ -51,20 +56,30 @@ function createProject(title){
 
     const div = document.createElement('div')
     div.className = "project"
-    div.textContent = project.title
-    container.append(div)
-    dropMenu.append(div)
-    container.style.display="block"
+    div.textContent = title
+    
+    border.append(div)
+    dropMenu.appendChild(div)
+    content.append(createTodoList(title))
+
+    border.style.display="block"
+    
     saveProject(project)
+}
+
+function createTodoList(title){
+    const div = document.createElement('div')
+    div.className = "todo-list"
+    const name = document.createElement('h1')
+    name.textContent = title
+    div.append(name)
+    return div
 }
 
 function saveProject(project){
     const projects = JSON.parse(localStorage.getItem("project")) || [];
     projects.push(project)
     localStorage.setItem("project", JSON.stringify(projects))
-    if(projects.length !==0){
-        container.style.display="block"
-    }
 }
 
 function loadProject(){
@@ -73,18 +88,12 @@ function loadProject(){
         const div = document.createElement('div')
         div.className = "project"
         div.textContent = project.title
-        container.append(div)
-        
+        border.append(div)
     })
         if(projects.length !==0){
-        container.style.display="block"
+        border.style.display="block"
     }
 }
-
-addButton.addEventListener('click', function(){
-    container.append(createForm())
-    container.style.display="block"
-})
 
 
 

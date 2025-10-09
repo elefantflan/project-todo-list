@@ -69,18 +69,15 @@ h1{
   position:relative;
 }
 
-.popup-list{
-  opacity:0%;
+.todo-list{
   position:fixed;
-}
-
-.popup-list .show{
-  opacity:100%;
-}
-
-.create {
-  background: none;
-  border: none;
+  text-align: center;
+  top:15%;
+  left: 30%;
+  border:1px solid var(--jasmine);
+  width:500px;
+  height:500px;
+  opacity:0;
 }
 
 .button-today,
@@ -93,7 +90,7 @@ h1{
   cursor:pointer;
 }
 
-.todo-list{
+.border{
   display: flex;
   flex:auto;
   flex-wrap: wrap;
