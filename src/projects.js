@@ -1,55 +1,92 @@
-const todoContainer = document.createElement('div')
-todoContainer.style.display="none"
-todoContainer.className="todo-list"
-const btnAdd = document.createElement('button')
-btnAdd.textContent="+"
-btnAdd.id="add"
+import { dropMenu } from "./index.js"
+import { getForm } from "./today.js"
+import { btnProject } from "./index.js"
+const page = document.createElement('div')
+page.className="tab"
+const container = document.createElement('div')
+container.className="todo-list"
+container.style.display="none"
+const addButton = document.createElement('button')
+addButton.textContent="+"
+addButton.id="add"
+
+function Project(title){
+    this.title=title
+}
 
 function getPageProjects(){
-    const page = document.createElement('div')
-    page.append(todoContainer)
-    page.append(btnAdd)
-
+    page.append(container)
+    page.append(addButton)
     return page;
 }
 
-function projectFolder(){
+function createForm(){
     const form = document.createElement('form')
+    const input = document.createElement('input')
     const submit = document.createElement('button')
-    const label = document.createElement('label')
-    const input = document.createElement('input')   
 
+    form.append(input,submit)
+    
+    submit.textContent="+"
     submit.type = "submit"
     input.type="text"
 
-    label.for="title"
-    input.id="title"
-
-    submit.textContent="Enter"
-    label.textContent="Title:"
-
-    form.append(label, input, submit)
-
-    submit.addEventListener('click', function(){
-        const folder = document.createElement('div')
-        const drop = document.createElement('form')
-        const detail = document.createElement('textarea')
-        const submit = document.createElement('button')
-
-        folder.className = "folder"
-
-        form.textContent=`${input.value}`
-        submit.textContent="Enter"
-
-        todoContainer.append(folder)
-        folder.append(form)
+    submit.addEventListener('click', function(e){
+        e.preventDefault
+        const value = input.value.trim()
+        if(value===''){
+        alert("Please enter a valid name")
+        }
+        else{
+        createProject(input.value)
+        }
     })
+
+    form.remove()
     return form
 }
 
-btnAdd.addEventListener('click',function(){
-    todoContainer.append(projectFolder());
-    todoContainer.style.display="block";
+function createProject(title){
+    const project = new Project(title)
+
+    const div = document.createElement('div')
+    div.className = "project"
+    div.textContent = project.title
+    container.append(div)
+    dropMenu.append(div)
+    container.style.display="block"
+    saveProject(project)
+}
+
+function saveProject(project){
+    const projects = JSON.parse(localStorage.getItem("project")) || [];
+    projects.push(project)
+    localStorage.setItem("project", JSON.stringify(projects))
+    if(projects.length !==0){
+        container.style.display="block"
+    }
+}
+
+function loadProject(){
+    const projects = JSON.parse(localStorage.getItem("project")) || []
+    projects.forEach(project=>{
+        const div = document.createElement('div')
+        div.className = "project"
+        div.textContent = project.title
+        container.append(div)
+        
+    })
+        if(projects.length !==0){
+        container.style.display="block"
+    }
+}
+
+addButton.addEventListener('click', function(){
+    container.append(createForm())
+    container.style.display="block"
 })
 
+
+
+window.addEventListener('DOMContentLoaded', loadProject)
 export{getPageProjects}

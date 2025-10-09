@@ -9,7 +9,7 @@ import { getPageFinished } from "./finished"
 const content = document.querySelector('.content')
 const btnToday = document.querySelector('.button-today')
 const btnScheduled = document.querySelector('.button-schedule')
-const btnProject = document.querySelector('.button-project')
+export const btnProject = document.querySelector('.button-project')
 const btnTags = document.querySelector('.button-tag')
 const btnFinished = document.querySelector('.button-finished')
 const todoList = document.querySelector('.todo-list')
@@ -46,3 +46,5 @@ btnFinished.addEventListener('click', ()=>{
   content.textContent=''
   content.append(getPageFinished())
 })
+
+export {dropMenu}
